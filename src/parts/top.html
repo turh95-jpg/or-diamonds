@@ -1,6 +1,8 @@
 <body>
 <a class="skip" href="#content">דילוג לתוכן הראשי</a>
 
+<div class="topbar"><span>משלוח עם שליח עד הבית</span><svg class="spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 7.2 4.8 11.1 12 12-7.2.9-11.1 4.8-12 12-.9-7.2-4.8-11.1-12-12 7.2-.9 11.1-4.8 12-12z" fill="currentColor"/></svg><span>תיקון ראשון עלינו</span><svg class="spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 7.2 4.8 11.1 12 12-7.2.9-11.1 4.8-12 12-.9-7.2-4.8-11.1-12-12 7.2-.9 11.1-4.8 12-12z" fill="currentColor"/></svg><span class="hide-s">תעודה לכל יהלום</span></div>
+
 <header class="nav">
   <div class="nav-in">
     <nav class="nav-links" aria-label="ניווט ראשי">
@@ -35,13 +37,11 @@
           <a class="btn arrow" href="#shop-rings">לעיצוב טבעת</a>
           <a class="btn line" href="#custom">יש לי רעיון משלי</a>
         </div>
-        <div class="facts">
-          <div><b>14K</b>זהב לבן או צהוב</div>
-          <div><b>7 ימים</b>מההזמנה ועד הדלת</div>
-          <div><b>1</b>תיקון בלי עלות</div>
         </div>
+      <div class="hero-art">
+        <svg class="seal" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="sealp" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs><circle cx="60" cy="60" r="59" fill="#15110D" stroke="#B8925A" stroke-width=".6"/><g class="seal-t"><text font-size="9.4" letter-spacing="2.6" fill="#E9D3A6"><textPath href="#sealp">OR DIAMONDS ✦ LAB GROWN ✦ 14K GOLD ✦</textPath></text></g><path d="M60 42c1.3 10.8 7.2 16.7 18 18-10.8 1.3-16.7 7.2-18 18-1.3-10.8-7.2-16.7-18-18 10.8-1.3 16.7-7.2 18-18z" fill="#E9D3A6"/></svg>
+        <div class="arch"><img src="img/life-hero.jpg" alt="יד של אישה עם טבעת יהלום אובלי בזהב צהוב, באור שמש חם. התמונה להמחשה"><span class="tag">טבעת סוליטר, יהלום אובלי</span></div>
       </div>
-      <div class="arch"><img src="img/life-hero.jpg" alt="יד של אישה עם טבעת יהלום אובלי בזהב צהוב, באור שמש חם. התמונה להמחשה"><span class="tag">טבעת סוליטר · יהלום אובלי</span></div>
     </div>
   </section>
 
@@ -51,7 +51,7 @@
     <div class="wrap">
       <div class="sec-head rv">
         <h2>איזו צורה מדליקה אותך?</h2>
-        <p>כל טבעת אצלנו מגיעה בשלוש צורות יהלום. בחרו את הצורה שלכם, ונמשיך משם.</p>
+        <p>כל טבעת אצלנו מגיעה בשלוש צורות יהלום. בחרו צורה, ונפתח לכם את הטבעת איתה.</p>
       </div>
       <div class="shapes" id="shapes"></div>
     </div>
@@ -64,6 +64,24 @@
         <p>ארבעה דגמים לטבעת האחת. בחרו טבעת כדי לראות אותה מכל זווית, וגם על היד.</p>
       </div>
       <div class="cards" id="homeCards"></div>
+    </div>
+  </section>
+
+  <section class="sec size-sec" aria-labelledby="sizeTitle">
+    <div class="wrap sizeguide">
+      <div>
+        <h2 id="sizeTitle">כמה גדול זה קראט?</h2>
+        <p>קראט הוא משקל, לא קוטר. כך נראה יהלום עגול מלמעלה בכל אחד משלושת הגדלים שלנו, ביחס אמיתי ביניהם.</p>
+        <div class="size-tabs" role="group" aria-label="גודל היהלום בקראט" id="sizeTabs"></div>
+        <p class="size-out" id="sizeOut" aria-live="polite"></p>
+        <a class="btn dark arrow" href="#shop-rings">לבחירת טבעת</a>
+      </div>
+      <div class="size-stage" aria-hidden="true">
+        <svg viewBox="0 0 420 292" id="sizeSvg">
+          <g id="sizeGem" class="size-gem"></g>
+          <g id="sizeRuler"></g>
+        </svg>
+      </div>
     </div>
   </section>
 
@@ -84,22 +102,37 @@
         <div class="arch"><img src="img/life-bracelet.jpg" alt="פרק יד עם צמיד טניס יהלומים בזהב לבן על משי. התמונה להמחשה" loading="lazy"></div>
       </div>
       <div class="rv">
-        <div class="kick">מעבר לטבעת</div>
         <h2>ברק קטן, לכל יום.</h2>
         <p>צמידי טניס, שרשראות, תליונים ועגילים. אותו זהב, אותם יהלומים, ואותה התאמה אישית.</p>
         <ul class="list">
-          <li><span>01</span><a class="textlink" href="#shop-bracelets">צמידי טניס</a></li>
-          <li><span>02</span><a class="textlink" href="#shop-necklaces">שרשראות ותליונים</a></li>
-          <li><span>03</span><a class="textlink" href="#shop-earrings">עגילים</a></li>
+          <li><a href="#shop-bracelets"><img src="img/tennis-bracelet.jpg" alt="" loading="lazy"><span>צמידי טניס</span><i aria-hidden="true">←</i></a></li>
+          <li><a href="#shop-necklaces"><img src="img/pendant.jpg" alt="" loading="lazy"><span>שרשראות ותליונים</span><i aria-hidden="true">←</i></a></li>
+          <li><a href="#shop-earrings"><img src="img/studs.jpg" alt="" loading="lazy"><span>עגילים</span><i aria-hidden="true">←</i></a></li>
         </ul>
         <a class="btn dark arrow" href="#shop">לכל התכשיטים</a>
       </div>
     </div>
   </section>
 
+  <section class="sec hands-sec" aria-labelledby="handsTitle">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="handsTitle">ואיך זה נראה על היד.</h2><p>אותן טבעות מהקולקציה, בזהב לבן ובזהב צהוב.</p></div>
+      <div class="hands" id="hands"></div>
+    </div>
+  </section>
+
   <section class="quote dark">
     <blockquote>כל תכשיט הוא <em>סיפור קטן</em>, ואנחנו שמחים להיות חלק משלך.</blockquote>
-    <cite>אורי וחרות · אור יהלומים</cite>
+    <cite>אורי וחרות, אור יהלומים</cite>
+  </section>
+
+  <section class="trust" aria-label="מה מקבלים עם כל תכשיט">
+    <div class="wrap trust-in">
+      <div><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5l5 4 6-1 2 6 6 3-2 6 2 6-6 3-2 6-6-1-5 4-5-4-6 1-2-6-6-3 2-6-2-6 6-3 2-6 6 1z"/><path d="M17 24l5 5 9-10"/></svg><b>תעודה לכל יהלום</b><span>יהלום מעבדה אמיתי, עם תעודה שמגיעה איתו.</span></div>
+      <div><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M4 13h24v20H4zM28 20h9l7 7v6H28z"/><circle cx="13" cy="35" r="4"/><circle cx="36" cy="35" r="4"/></svg><b>שבוע עד הדלת</b><span>מייצרים אחרי ההזמנה, ושולחים עם שליח.</span></div>
+      <div><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="29" r="13"/><path d="M17 9h14l-4 8h-6z"/><path d="M24 23v6l4 3"/></svg><b>תיקון ראשון עלינו</b><span>כולל שינוי מידה של הטבעת.</span></div>
+      <div><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 19h34v22H7zM4 12h40v7H4zM24 12v29"/><path d="M24 12c-3-7-12-7-11-2s8 2 11 2zm0 0c3-7 12-7 11-2s-8 2-11 2z"/></svg><b>אריזת מתנה</b><span>קופסה, תעודה וכרטיס ברכה למילוי.</span></div>
+    </div>
   </section>
 
   <section class="sec">
@@ -130,8 +163,10 @@
 
   <section class="sec" style="padding-top:20px">
     <div class="wrap">
-      <div class="sec-head"><h2>שאלות נפוצות</h2></div>
-      <div class="faq" id="faqHome"></div>
+      <div class="faq-wrap">
+        <div><h2>שאלות נפוצות</h2><p>לא מצאתם תשובה? כתבו לנו, אנחנו עונים בוואטסאפ.</p><a class="textlink" href="https://wa.me/972552420284" target="_blank" rel="noopener">לשאלה בוואטסאפ</a></div>
+        <div class="faq" id="faqHome"></div>
+      </div>
     </div>
   </section>
 </div>
@@ -157,6 +192,7 @@
       <div class="stage-wrap"><div class="stage" id="stage"></div><div class="thumbs" id="thumbs" role="group" aria-label="זוויות צילום"></div><p class="photo-note">התמונה להמחשה. התכשיט מיוצר לפי הבחירות שלך.</p></div>
       <div id="config"></div>
     </div>
+    <section class="more" aria-labelledby="moreTitle"><h2 id="moreTitle">עוד דגמים שכדאי לראות</h2><div class="cards" id="moreCards"></div></section>
   </div>
 </div>
 

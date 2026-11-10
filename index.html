@@ -82,7 +82,7 @@ header.nav{position:sticky;top:0;z-index:50;background:rgba(21,17,13,.88);backdr
 main{display:block}
 .view{display:none}.view.on{display:block}
 .wrap{max-width:1240px;margin:0 auto;padding:0 24px}
-.kick{font-size:13px;letter-spacing:.24em;color:var(--gold);text-transform:uppercase;font-weight:600}
+.kick{font-size:14px;letter-spacing:.06em;color:var(--gold);text-transform:uppercase;font-weight:600}
 .btn{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--night);border:0;border-radius:999px;padding:14px 28px;font-weight:600;font-size:16px;text-decoration:none;transition:transform .25s,background .25s,box-shadow .25s}
 .btn:hover{background:#CDA86C;transform:translateY(-2px);box-shadow:0 10px 28px rgba(184,146,90,.35)}
 .btn.line{background:transparent;color:inherit;box-shadow:inset 0 0 0 1px currentColor}
@@ -147,8 +147,8 @@ section.sec{padding:110px 0}
 /* COLLECTION CARDS */
 .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
 .pcard{text-decoration:none;display:flex;flex-direction:column;gap:12px}
-.pcard .pic{position:relative;aspect-ratio:4/5;border-radius:var(--arch);overflow:hidden;background:#FBF8F3;border:1px solid var(--line)}
-.pcard .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:12%;transition:opacity .6s,transform .8s}
+.pcard .pic{position:relative;aspect-ratio:4/5;border-radius:var(--arch);overflow:hidden;background:#fff;border:1px solid var(--line)}
+.pcard .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:9% 7% 5%;transition:opacity .6s,transform .8s}
 .pcard .pic img.alt{object-fit:cover;padding:0;opacity:0}
 .pcard:hover .pic img.alt{opacity:1}
 .pcard:hover .pic img.main{transform:scale(1.04)}
@@ -392,10 +392,161 @@ table.sizes th,table.sizes td{border-bottom:1px solid var(--line);padding:7px;te
   .lit-text .w{opacity:1}
   .js .rv:not(.in){transform:none;opacity:1}
 }
+
+/* ===== ליטוש: פרטים עדינים ===== */
+.spark{width:9px;height:9px;color:var(--gold);flex:none}
+.topbar{background:#0D0A07;color:#BFB09A;font-size:13px;display:flex;justify-content:center;align-items:center;gap:14px;padding:8px 14px}
+@media (max-width:520px){.topbar .hide-s,.topbar .spark:last-of-type{display:none}}
+header.nav{box-shadow:0 1px 0 rgba(233,211,166,.08)}
+.nav-links a{position:relative;border:0}
+.nav-links a::after{content:"";position:absolute;inset-inline:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.nav-links a:hover::after,.nav-links a.on::after{transform:scaleX(1)}
+.btn{letter-spacing:.01em}
+.arrow::after{transition:transform .25s}
+.arrow:hover::after{transform:translateX(-4px)}
+
+/* hero art */
+.hero-in{padding-block:64px 96px}
+.hero .lede{margin-bottom:34px}
+.hero-art{position:relative;max-width:420px;width:100%;margin-inline-start:auto;animation:rise 1.4s cubic-bezier(.2,.7,.2,1) both}
+.hero-art::before{content:"";position:absolute;inset:-14px;border:1px solid rgba(233,211,166,.28);border-radius:999px 999px 28px 28px;pointer-events:none}
+.hero-art .arch{max-width:none;margin:0;animation:none}
+.seal{position:absolute;width:124px;height:124px;right:-54px;bottom:44px;z-index:3;filter:drop-shadow(0 14px 26px rgba(0,0,0,.5))}
+.seal-t{transform-origin:60px 60px;animation:spin 46s linear infinite}
+.seal text{font-family:var(--f-latin);font-weight:500}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:900px){.hero-art{max-width:250px;margin:6px auto 0;order:-1}.hero-art::before{inset:-10px}.seal{width:86px;height:86px;right:-34px;bottom:26px}.hero .tag{bottom:14px;right:50%;transform:translateX(50%);white-space:nowrap;font-size:12px}}
+
+/* shapes with photographs */
+.shape{background:#fff;padding:0 0 30px;overflow:hidden;gap:6px}
+.shape-pic{display:block;width:100%;aspect-ratio:1/1.02;overflow:hidden}
+.shape-pic img{width:100%;height:100%;object-fit:contain;padding:16% 12% 4%;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.shape:hover .shape-pic img{transform:scale(1.07)}
+.shape b{font-size:36px}
+@media (max-width:640px){.shape{padding-bottom:16px}.shape b{font-size:22px}.shape-pic img{padding:22% 6% 0}}
+
+/* cards */
+.pcard .pic{transition:border-color .35s,box-shadow .35s}
+.pcard:hover .pic{border-color:var(--gold);box-shadow:0 22px 44px rgba(110,90,62,.14)}
+.pcard .badge{font-size:12px;letter-spacing:.04em;background:#fff;bottom:16px}
+.pcard h3{font-size:27px;margin-top:4px}
+.pcard .price{font-weight:500;color:var(--gold);display:inline-flex;gap:6px}
+.pcard .price i{font-style:normal;transition:transform .25s}
+.pcard:hover .price i{transform:translateX(-4px)}
+
+/* carat guide */
+.size-sec{background:#EDE4D6;border-block:1px solid var(--line)}
+.sizeguide{display:grid;grid-template-columns:.95fr 1.05fr;gap:64px;align-items:center}
+.sizeguide h2{font-size:clamp(40px,5vw,68px);margin-bottom:18px}
+.sizeguide p{color:var(--ink-2);font-size:18px;max-width:27em}
+.size-tabs{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px;margin:28px 0 14px;gap:4px}
+.size-tabs button{background:none;border:0;border-radius:999px;padding:10px 22px;font-size:16px;font-weight:500;transition:background .25s,color .25s}
+.size-tabs button.on{background:var(--night);color:#F6EBD4}
+.sizeguide .size-out{color:var(--ink);font-family:var(--f-display);font-size:24px;margin-bottom:28px;min-height:1.4em}
+.size-stage{background:#fff;border:1px solid var(--line);border-radius:999px 999px 24px 24px;padding:34px 16px 14px}
+.size-stage svg{width:100%;height:auto;display:block}
+.size-gem g{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.size-gem circle,.size-gem path{fill:none;stroke:#8C7350;stroke-width:1.1;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.size-gem .g-fill{fill:#FBF6EC;stroke:none}
+#sizeRuler line{stroke:#B9AC98;stroke-width:1}
+#sizeRuler .mark{stroke:var(--gold);stroke-width:1.6;stroke-dasharray:3 3}
+#sizeRuler text{font-family:var(--f-body);font-size:13px;fill:var(--ink-2)}
+@media (max-width:900px){.sizeguide{grid-template-columns:1fr;gap:36px}.size-stage{order:-1;max-width:420px;margin:0 auto;width:100%}}
+
+/* beyond the ring: thumbnail links */
+.split .list{gap:0;margin:26px 0 34px}
+.split .list li{padding:0;border-bottom:1px solid var(--line);display:block}
+.split .list li:first-child{border-top:1px solid var(--line)}
+.split .list a{display:flex;align-items:center;gap:18px;padding:14px 0;text-decoration:none;font-family:var(--f-display);font-size:28px;transition:padding .3s}
+.split .list a:hover{padding-inline-start:10px}
+.split .list img{width:58px;height:58px;border-radius:50%;object-fit:cover;background:#fff;border:1px solid var(--line)}
+.split .list a span{font-family:inherit;color:inherit;font-size:inherit;flex:1;min-width:0}
+.split .list a i{font-style:normal;color:var(--gold);font-family:var(--f-body);font-size:20px}
+
+/* on the hand */
+.hands{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;align-items:start}
+.hand{text-decoration:none;display:grid;gap:4px;text-align:center}
+.hand:nth-child(even){margin-top:54px}
+.hand .arch{aspect-ratio:3/4;display:block;margin-bottom:12px}
+.hand .arch img{transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.hand:hover .arch img{transform:scale(1.06)}
+.hand b{font-family:var(--f-display);font-weight:400;font-size:25px}
+.hand small{color:var(--ink-2);font-size:14.5px}
+@media (max-width:800px){.hands{grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:62%;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-24px;padding:0 24px 14px;gap:14px;scrollbar-width:none}.hands::-webkit-scrollbar{display:none}.hand{scroll-snap-align:center}.hand:nth-child(even){margin-top:0}}
+
+/* quote ornament */
+.quote{padding:130px 24px}
+.quote blockquote::before{content:"";display:block;width:1px;height:64px;background:linear-gradient(180deg,transparent,var(--gold));margin:0 auto 34px}
+.quote cite{color:#A99C88;letter-spacing:.08em;font-size:14px}
+
+/* trust row */
+.trust{background:var(--night);color:#EFE6D6;border-top:1px solid rgba(233,211,166,.14);padding:54px 0 60px}
+.trust-in{display:grid;grid-template-columns:repeat(4,1fr)}
+.trust-in>div{padding:6px 26px;text-align:center;display:grid;gap:6px;justify-items:center;border-inline-start:1px solid rgba(233,211,166,.14)}
+.trust-in>div:first-child{border-inline-start:0}
+.trust svg{width:40px;height:40px;fill:none;stroke:var(--gold-lite);stroke-width:1.3;stroke-linejoin:round;stroke-linecap:round;margin-bottom:8px}
+.trust b{font-family:var(--f-display);font-weight:400;font-size:23px;color:#F6EBD4}
+.trust span{color:#A99C88;font-size:14.5px;max-width:17em}
+@media (max-width:800px){.trust-in{grid-template-columns:1fr 1fr;row-gap:34px}.trust-in>div:nth-child(3){border-inline-start:0}.trust-in>div{padding:0 12px}}
+
+/* steps */
+.step .num{font-size:64px;opacity:1;color:transparent;-webkit-text-stroke:1px var(--gold)}
+.step{padding:34px 26px 14px}
+
+/* FAQ */
+.faq-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start}
+.faq-wrap h2{font-size:clamp(40px,5vw,68px);margin-bottom:16px}
+.faq-wrap>div:first-child{position:sticky;top:110px}
+.faq-wrap>div:first-child p{color:var(--ink-2);margin-bottom:18px;max-width:20em}
+.faq{max-width:none}
+.faq details:first-child{border-top:1px solid var(--line)}
+summary{align-items:center}
+summary::after{content:"";width:13px;height:13px;flex:none;background:linear-gradient(var(--gold),var(--gold)) center/100% 1px no-repeat,linear-gradient(var(--gold),var(--gold)) center/1px 100% no-repeat}
+@media (max-width:900px){.faq-wrap{grid-template-columns:1fr;gap:28px}.faq-wrap>div:first-child{position:static}}
+
+/* product page */
+.stage{border-radius:999px 999px 28px 28px;aspect-ratio:1/1.08;background:#fff}
+.stage img.photo{width:82%;height:82%;mix-blend-mode:normal;margin-top:6%}
+.stage img.photo.cover{margin:0}
+.thumbs button{border-radius:999px 999px 12px 12px;height:84px;background:#fff}
+.thumbs img{border-radius:999px 999px 8px 8px;mix-blend-mode:normal}
+.pd-acc{margin-top:26px}
+.pd-acc details{padding:16px 0}
+.pd-acc details:first-child{border-top:1px solid var(--line)}
+.pd-acc summary{font-size:21px}
+.pd-acc p{font-size:15.5px}
+.more{padding:10px 0 110px;border-top:1px solid var(--line)}
+.more h2{font-size:clamp(34px,4vw,54px);margin:60px 0 34px}
+.buy{padding-bottom:80px}
+
+/* footer */
+.foot{padding-top:96px}
+.foot-cta{text-align:center;display:grid;gap:26px;justify-items:center;padding-bottom:70px;border-bottom:1px solid rgba(233,211,166,.14);margin-bottom:60px}
+.foot-cta h2{font-size:clamp(40px,6vw,84px);color:#F6EBD4}
+.foot .big{font-size:clamp(50px,9vw,120px);margin-bottom:44px}
+
+/* floating buttons */
+.wa{display:inline-flex;align-items:center;gap:8px;padding:12px 18px 12px 20px}
+.wa svg{width:22px;height:22px}
+.a11y-btn{width:48px;height:48px;padding:0;display:grid;place-items:center}
+.a11y-btn svg{width:24px;height:24px}
+@media (max-width:900px){.wa{padding:0;width:52px;height:52px;justify-content:center}.wa span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.wa svg{width:26px;height:26px}.a11y-btn{padding:0}}
+
+/* one entrance only: the hero. Sections stay still. */
+.js .rv:not(.in){transform:none;opacity:1}
+.seal text{direction:ltr;unicode-bidi:bidi-override}
+.seal{right:-62px;bottom:auto;top:16%}
+@media (max-width:900px){.seal{right:-40px;top:14%}}
+.pcard .pic{aspect-ratio:1/1.14}
+.pcard .pic img{padding:14% 8% 6%}
+.foot a.btn{display:inline-flex;margin:0;color:var(--night)}
+.size-stage{padding-bottom:0}
 </style>
 </head>
 <body>
 <a class="skip" href="#content">דילוג לתוכן הראשי</a>
+
+<div class="topbar"><span>משלוח עם שליח עד הבית</span><svg class="spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 7.2 4.8 11.1 12 12-7.2.9-11.1 4.8-12 12-.9-7.2-4.8-11.1-12-12 7.2-.9 11.1-4.8 12-12z" fill="currentColor"/></svg><span>תיקון ראשון עלינו</span><svg class="spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 7.2 4.8 11.1 12 12-7.2.9-11.1 4.8-12 12-.9-7.2-4.8-11.1-12-12 7.2-.9 11.1-4.8 12-12z" fill="currentColor"/></svg><span class="hide-s">תעודה לכל יהלום</span></div>
 
 <header class="nav">
   <div class="nav-in">
@@ -431,13 +582,11 @@ table.sizes th,table.sizes td{border-bottom:1px solid var(--line);padding:7px;te
           <a class="btn arrow" href="#shop-rings">לעיצוב טבעת</a>
           <a class="btn line" href="#custom">יש לי רעיון משלי</a>
         </div>
-        <div class="facts">
-          <div><b>14K</b>זהב לבן או צהוב</div>
-          <div><b>7 ימים</b>מההזמנה ועד הדלת</div>
-          <div><b>1</b>תיקון בלי עלות</div>
         </div>
+      <div class="hero-art">
+        <svg class="seal" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="sealp" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs><circle cx="60" cy="60" r="59" fill="#15110D" stroke="#B8925A" stroke-width=".6"/><g class="seal-t"><text font-size="9.4" letter-spacing="2.6" fill="#E9D3A6"><textPath href="#sealp">OR DIAMONDS ✦ LAB GROWN ✦ 14K GOLD ✦</textPath></text></g><path d="M60 42c1.3 10.8 7.2 16.7 18 18-10.8 1.3-16.7 7.2-18 18-1.3-10.8-7.2-16.7-18-18 10.8-1.3 16.7-7.2 18-18z" fill="#E9D3A6"/></svg>
+        <div class="arch"><img src="img/life-hero.jpg" alt="יד של אישה עם טבעת יהלום אובלי בזהב צהוב, באור שמש חם. התמונה להמחשה"><span class="tag">טבעת סוליטר, יהלום אובלי</span></div>
       </div>
-      <div class="arch"><img src="img/life-hero.jpg" alt="יד של אישה עם טבעת יהלום אובלי בזהב צהוב, באור שמש חם. התמונה להמחשה"><span class="tag">טבעת סוליטר · יהלום אובלי</span></div>
     </div>
   </section>
 
@@ -447,7 +596,7 @@ table.sizes th,table.sizes td{border-bottom:1px solid var(--line);padding:7px;te
     <div class="wrap">
       <div class="sec-head rv">
         <h2>איזו צורה מדליקה אותך?</h2>
-        <p>כל טבעת אצלנו מגיעה בשלוש צורות יהלום. בחרו את הצורה שלכם, ונמשיך משם.</p>
+        <p>כל טבעת אצלנו מגיעה בשלוש צורות יהלום. בחרו צורה, ונפתח לכם את הטבעת איתה.</p>
       </div>
       <div class="shapes" id="shapes"></div>
     </div>
@@ -460,6 +609,24 @@ table.sizes th,table.sizes td{border-bottom:1px solid var(--line);padding:7px;te
         <p>ארבעה דגמים לטבעת האחת. בחרו טבעת כדי לראות אותה מכל זווית, וגם על היד.</p>
       </div>
       <div class="cards" id="homeCards"></div>
+    </div>
+  </section>
+
+  <section class="sec size-sec" aria-labelledby="sizeTitle">
+    <div class="wrap sizeguide">
+      <div>
+        <h2 id="sizeTitle">כמה גדול זה קראט?</h2>
+        <p>קראט הוא משקל, לא קוטר. כך נראה יהלום עגול מלמעלה בכל אחד משלושת הגדלים שלנו, ביחס אמיתי ביניהם.</p>
+        <div class="size-tabs" role="group" aria-label="גודל היהלום בקראט" id="sizeTabs"></div>
+        <p class="size-out" id="sizeOut" aria-live="polite"></p>
+        <a class="btn dark arrow" href="#shop-rings">לבחירת טבעת</a>
+      </div>
+      <div class="size-stage" aria-hidden="true">
+        <svg viewBox="0 0 420 292" id="sizeSvg">
+          <g id="sizeGem" class="size-gem"></g>
+          <g id="sizeRuler"></g>
+        </svg>
+      </div>
     </div>
   </section>
 
@@ -480,22 +647,37 @@ table.sizes th,table.sizes td{border-bottom:1px solid var(--line);padding:7px;te
         <div class="arch"><img src="img/life-bracelet.jpg" alt="פרק יד עם צמיד טניס יהלומים בזהב לבן על משי. התמונה להמחשה" loading="lazy"></div>
       </div>
       <div class="rv">
-        <div class="kick">מעבר לטבעת</div>
         <h2>ברק קטן, לכל יום.</h2>
         <p>צמידי טניס, שרשראות, תליונים ועגילים. אותו זהב, אותם יהלומים, ואותה התאמה אישית.</p>
         <ul class="list">
-          <li><span>01</span><a class="textlink" href="#shop-bracelets">צמידי טניס</a></li>
-          <li><span>02</span><a class="textlink" href="#shop-necklaces">שרשראות ותליונים</a></li>
-          <li><span>03</span><a class="textlink" href="#shop-earrings">עגילים</a></li>
+          <li><a href="#shop-bracelets"><img src="img/tennis-bracelet.jpg" alt="" loading="lazy"><span>צמידי טניס</span><i aria-hidden="true">←</i></a></li>
+          <li><a href="#shop-necklaces"><img src="img/pendant.jpg" alt="" loading="lazy"><span>שרשראות ותליונים</span><i aria-hidden="true">←</i></a></li>
+          <li><a href="#shop-earrings"><img src="img/studs.jpg" alt="" loading="lazy"><span>עגילים</span><i aria-hidden="true">←</i></a></li>
         </ul>
         <a class="btn dark arrow" href="#shop">לכל התכשיטים</a>
       </div>
     </div>
   </section>
 
+  <section class="sec hands-sec" aria-labelledby="handsTitle">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="handsTitle">ואיך זה נראה על היד.</h2><p>אותן טבעות מהקולקציה, בזהב לבן ובזהב צהוב.</p></div>
+      <div class="hands" id="hands"></div>
+    </div>
+  </section>
+
   <section class="quote dark">
     <blockquote>כל תכשיט הוא <em>סיפור קטן</em>, ואנחנו שמחים להיות חלק משלך.</blockquote>
-    <cite>אורי וחרות · אור יהלומים</cite>
+    <cite>אורי וחרות, אור יהלומים</cite>
+  </section>
+
+  <section class="trust" aria-label="מה מקבלים עם כל תכשיט">
+    <div class="wrap trust-in">
+      <div><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5l5 4 6-1 2 6 6 3-2 6 2 6-6 3-2 6-6-1-5 4-5-4-6 1-2-6-6-3 2-6-2-6 6-3 2-6 6 1z"/><path d="M17 24l5 5 9-10"/></svg><b>תעודה לכל יהלום</b><span>יהלום מעבדה אמיתי, עם תעודה שמגיעה איתו.</span></div>
+      <div><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M4 13h24v20H4zM28 20h9l7 7v6H28z"/><circle cx="13" cy="35" r="4"/><circle cx="36" cy="35" r="4"/></svg><b>שבוע עד הדלת</b><span>מייצרים אחרי ההזמנה, ושולחים עם שליח.</span></div>
+      <div><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="29" r="13"/><path d="M17 9h14l-4 8h-6z"/><path d="M24 23v6l4 3"/></svg><b>תיקון ראשון עלינו</b><span>כולל שינוי מידה של הטבעת.</span></div>
+      <div><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 19h34v22H7zM4 12h40v7H4zM24 12v29"/><path d="M24 12c-3-7-12-7-11-2s8 2 11 2zm0 0c3-7 12-7 11-2s-8 2-11 2z"/></svg><b>אריזת מתנה</b><span>קופסה, תעודה וכרטיס ברכה למילוי.</span></div>
+    </div>
   </section>
 
   <section class="sec">
@@ -526,8 +708,10 @@ table.sizes th,table.sizes td{border-bottom:1px solid var(--line);padding:7px;te
 
   <section class="sec" style="padding-top:20px">
     <div class="wrap">
-      <div class="sec-head"><h2>שאלות נפוצות</h2></div>
-      <div class="faq" id="faqHome"></div>
+      <div class="faq-wrap">
+        <div><h2>שאלות נפוצות</h2><p>לא מצאתם תשובה? כתבו לנו, אנחנו עונים בוואטסאפ.</p><a class="textlink" href="https://wa.me/972552420284" target="_blank" rel="noopener">לשאלה בוואטסאפ</a></div>
+        <div class="faq" id="faqHome"></div>
+      </div>
     </div>
   </section>
 </div>
@@ -553,6 +737,7 @@ table.sizes th,table.sizes td{border-bottom:1px solid var(--line);padding:7px;te
       <div class="stage-wrap"><div class="stage" id="stage"></div><div class="thumbs" id="thumbs" role="group" aria-label="זוויות צילום"></div><p class="photo-note">התמונה להמחשה. התכשיט מיוצר לפי הבחירות שלך.</p></div>
       <div id="config"></div>
     </div>
+    <section class="more" aria-labelledby="moreTitle"><h2 id="moreTitle">עוד דגמים שכדאי לראות</h2><div class="cards" id="moreCards"></div></section>
   </div>
 </div>
 
@@ -744,7 +929,7 @@ table.sizes th,table.sizes td{border-bottom:1px solid var(--line);padding:7px;te
 
 </main><footer>
   <div class="foot">
-    <div class="big" aria-hidden="true">OR</div>
+    <div class="foot-cta"><h2>הכול מתחיל בהודעה אחת.</h2><a class="btn arrow" href="https://wa.me/972552420284" target="_blank" rel="noopener">לשיחה בוואטסאפ</a></div>
     <div class="cols">
       <div>
         <h4>אור יהלומים</h4>
@@ -761,8 +946,8 @@ table.sizes th,table.sizes td{border-bottom:1px solid var(--line);padding:7px;te
     </div>
   </div>
 </footer>
-<a class="wa" id="waFloat" href="https://wa.me/972552420284" aria-label="שליחת הודעת וואטסאפ למספר 055-2420284">וואטסאפ</a>
-<button class="a11y-btn" type="button" id="a11yBtn" aria-expanded="false" aria-controls="a11yPanel">נגישות</button>
+<a class="wa" id="waFloat" href="https://wa.me/972552420284" aria-label="שליחת הודעת וואטסאפ למספר 055-2420284"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.2A9 9 0 1 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8.5c-.6 2.800 3.200 6.600 6.500 6.500l1-1.600-2-1.100-.9.9c-1-.4-2.300-1.700-2.700-2.700l.9-.9-1.100-2z" fill="currentColor"/></svg><span>וואטסאפ</span></a>
+<button class="a11y-btn" type="button" id="a11yBtn" aria-expanded="false" aria-controls="a11yPanel"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4.500" r="1.900" fill="currentColor"/><path d="M4.500 8.500c5 1.400 10 1.400 15 0M12 9.500v5m0 0l-3.500 6m3.500-6l3.500 6" fill="none" stroke="currentColor" stroke-width="1.700" stroke-linecap="round"/></svg><span class="sr">נגישות</span></button>
 <div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="תפריט נגישות">
   <h3>תפריט נגישות</h3>
   <button type="button" data-a11y="big" aria-pressed="false">הגדלת טקסט</button>
@@ -884,19 +1069,46 @@ function pcard(p,gold="yellow"){
   const isRing=p.cat==="rings";
   const alt=isRing?`<img class="alt" src="img/${p.style}-${gold}-hand.jpg" alt="" loading="lazy">`:"";
   return `<a class="pcard rv" href="#product-${p.id}">
-    <div class="pic"><img class="main" src="${PHOTO(p,gold,"round")}" alt="${p.name}, ${GOLDS[gold].name}. התמונה להמחשה" loading="lazy">${alt}<span class="badge">14K · בהתאמה אישית</span></div>
+    <div class="pic"><img class="main" src="${PHOTO(p,gold,"round")}" alt="${p.name}, ${GOLDS[gold].name}. התמונה להמחשה" loading="lazy">${alt}</div>
     <h3>${p.name}</h3>
-    <div class="meta"><span>${CATS[p.cat].name}</span><span class="price">לבחירה ←</span></div>
+    <div class="meta"><span>${CATS[p.cat].name}</span><span class="price">לבחירה <i aria-hidden="true">←</i></span></div>
   </a>`;
 }
 const customCard=`<a class="pcard custom rv" href="#custom"><div class="pic"><div><b>לא מצאת?</b><small>נייצר במיוחד בשבילך לפי תמונה או רעיון.</small></div></div><h3>עיצוב אישי</h3><div class="meta"><span>בוואטסאפ</span><span class="price">←</span></div></a>`;
 function renderHome(){
   const t="זהב 14K ✦ יהלומי מעבדה ✦ מיוצר במיוחד בשבילך ✦ עד הבית תוך שבוע ✦ תיקון ראשון עלינו ✦ אריזת מתנה ✦ ";
   document.getElementById("ticker").innerHTML=`<span>${t.repeat(3).split("✦").join("<i>✦</i>")}</span><span>${t.repeat(3).split("✦").join("<i>✦</i>")}</span>`;
-  document.getElementById("shapes").innerHTML=Object.entries(SHAPES).map(([k,s])=>`<a class="shape rv" href="#product-solitaire" onclick="presetShape='${k}'">${s.icon.replace('width="26" height="26"','')}<b>${s.name}</b><small>${SHAPE_TXT[k]}</small></a>`).join("");
+  document.getElementById("shapes").innerHTML=Object.entries(SHAPES).map(([k,s])=>`<a class="shape" href="#product-solitaire" onclick="presetShape='${k}'"><span class="shape-pic"><img src="img/solitaire-yellow${k==="round"?"":"-"+k}.jpg" alt="טבעת סוליטר עם יהלום ${s.name}. התמונה להמחשה" loading="lazy"></span><b>${s.name}</b><small>${SHAPE_TXT[k]}</small></a>`).join("");
+  const HANDS=[["solitaire","yellow"],["halo","white"],["trilogy","yellow"],["pave","white"]];
+  document.getElementById("hands").innerHTML=HANDS.map(([id,g])=>{const p=byId(id);return `<a class="hand" href="#product-${id}"><span class="arch"><img src="img/${p.style}-${g}-hand.jpg" alt="טבעת ${p.name} ב${GOLDS[g].name} על יד. התמונה להמחשה" loading="lazy"></span><b>${p.name}</b><small>${GOLDS[g].name}</small></a>`;}).join("");
+  setupSize();
   document.getElementById("homeCards").innerHTML=["solitaire","halo","trilogy","pave"].map((id,i)=>pcard(byId(id),i%2?"white":"yellow")).join("");
   document.getElementById("faqHome").innerHTML=FAQ.map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join("");
   setupLit(); setupReveal();
+}
+/* מדריך גודל: קוטר מקורב של יהלום עגול לפי קראט */
+const CARAT_MM={1:6.5,1.5:7.4,2:8.1};
+let sizeSel=1;
+function setupSize(){
+  const tabs=document.getElementById("sizeTabs"); if(!tabs) return;
+  const PX=24, cx=210, base=236;
+  const draw=()=>{
+    const mm=CARAT_MM[sizeSel], r=mm*PX/2;
+    tabs.innerHTML=RING_CARATS.map(c=>`<button type="button" class="${c===sizeSel?"on":""}" aria-pressed="${c===sizeSel}" onclick="sizeSel=${c};setupSize()">${c} קראט</button>`).join("");
+    document.getElementById("sizeOut").textContent=`${sizeSel} קראט: קוטר של בערך ${mm} מ"מ ביהלום עגול.`;
+    let facets="";
+    for(let i=0;i<8;i++){const a=i*Math.PI/4+Math.PI/8,b=a+Math.PI/4,m=a+Math.PI/8;
+      const p=(q,k)=>`${(Math.cos(q)*k).toFixed(3)},${(Math.sin(q)*k).toFixed(3)}`;
+      facets+=`<path d="M${p(a,.52)}L${p(m,1)}L${p(b,.52)}M${p(a,.52)}L${p(a,1)}M${p(m,1)}L${p(m,.3)}"/>`;}
+    let oct=""; for(let i=0;i<8;i++){const a=i*Math.PI/4+Math.PI/8;oct+=(i?"L":"M")+(Math.cos(a)*.52).toFixed(3)+","+(Math.sin(a)*.52).toFixed(3);}
+    document.getElementById("sizeGem").innerHTML=`<g style="transform:translate(${cx}px,${base-12-r}px) scale(${r})"><circle r="1" class="g-fill"/><circle r="1"/>${facets}<path d="${oct}Z"/></g>`;
+    let rl=`<line x1="${cx-5*PX}" y1="${base}" x2="${cx+5*PX}" y2="${base}"/>`;
+    for(let i=0;i<=10;i++){const x=cx-5*PX+i*PX;rl+=`<line x1="${x}" y1="${base}" x2="${x}" y2="${base+(i%5?7:13)}"/>`;}
+    rl+=`<text x="${cx-5*PX}" y="${base+32}" text-anchor="middle">0</text><text x="${cx}" y="${base+32}" text-anchor="middle">5</text><text x="${cx+5*PX}" y="${base+32}" text-anchor="middle">10 מ"מ</text>`;
+    rl+=`<line class="mark" x1="${cx-r}" y1="${base-6}" x2="${cx-r}" y2="${base+18}"/><line class="mark" x1="${cx+r}" y1="${base-6}" x2="${cx+r}" y2="${base+18}"/>`;
+    document.getElementById("sizeRuler").innerHTML=rl;
+  };
+  draw();
 }
 const SHAPE_TXT={round:"הקלאסי. הכי הרבה ברק.",oval:"מאריך את האצבע. אלגנטי ונוצץ.",pear:"טיפה רומנטית, עם אופי."};
 let presetShape=null;
@@ -945,7 +1157,7 @@ function renderProduct(id){
     : `<img class="photo${cur.k==="hand"?" cover":""}" src="${cur.src}" alt="${p.name}, ${GOLDS[sel.gold].name}, ${cur.label}. התמונה להמחשה">`;
   document.getElementById("thumbs").innerHTML = views.length>1 ? views.map(v=>`<button type="button" class="${v.k===cur.k?"on":""}" aria-pressed="${v.k===cur.k}" aria-label="${v.label}" onclick="sel.view='${v.k}';renderProduct(sel.id)"><img src="${v.src}" alt="" loading="lazy"></button>`).join("") : "";
   const goldC=Object.entries(GOLDS).map(([k,g])=>`<button type="button" class="choice ${sel.gold===k?"on":""}" aria-pressed="${sel.gold===k}" onclick="pick('gold','${k}')"><span class="dot" style="background:linear-gradient(135deg,${g.a},${g.b})"></span><b>${g.name}</b><small>14 קראט</small></button>`).join("");
-  let h=`<div class="kick">${p.cat==="rings"?"חדש · בהתאמה אישית":CATS[p.cat].name}</div><h1>${p.name}</h1><p class="desc">${p.desc}</p>
+  let h=`<div class="kick">${p.cat==="rings"?"טבעת אירוסין בהתאמה אישית":CATS[p.cat].name}</div><h1>${p.name}</h1><p class="desc">${p.desc}</p>
     <div class="step-h">צבע הזהב. <span>איזה מהם?</span></div><div class="choices two">${goldC}</div>`;
   if(p.cat==="rings"){
     h+=`<div class="step-h">צורת היהלום. <span>איזו צורה?</span></div>
@@ -956,15 +1168,22 @@ function renderProduct(id){
       <label class="sr" for="ringSize">מידת הטבעת</label>
       <select id="ringSize" onchange="sel.size=this.value;document.getElementById('orderBtn').href=orderLink()"><option value="">עוד לא יודע/ת, נברר יחד</option>${RING_SIZES.map(s=>`<option ${String(sel.size)===String(s)?"selected":""}>${s}</option>`).join("")}</select>
       <button type="button" class="linkbtn" onclick="document.getElementById('sizeDlg').showModal()">איך יודעים מה המידה?</button>
-      <div class="sumbox"><div><div class="p">${p.name}</div><small>${GOLDS[sel.gold].name} 14K · יהלום ${SHAPES[sel.shape].name} ${sel.carat} קראט · מגיע תוך שבוע מאישור ההזמנה</small></div>
+      <div class="sumbox"><div><div class="p">${p.name}</div><small>${GOLDS[sel.gold].name} 14K, יהלום ${SHAPES[sel.shape].name} ${sel.carat} קראט. מגיע תוך שבוע מאישור ההזמנה</small></div>
         <a class="btn" id="orderBtn" target="_blank" rel="noopener" href="${orderLink()}">לקבלת הצעת מחיר בוואטסאפ</a><small class="sum-note">הלחיצה פותחת וואטסאפ עם הבחירה שלך. עוד לא מתחייבים לכלום.</small></div>`;
   } else {
-    h+=`<div class="sumbox"><div><div class="p">${p.name}</div><small>${GOLDS[sel.gold].name} 14K · אורך וגודל היהלומים בהתאמה אישית</small></div>
+    h+=`<div class="sumbox"><div><div class="p">${p.name}</div><small>${GOLDS[sel.gold].name} 14K, אורך וגודל היהלומים בהתאמה אישית</small></div>
       <a class="btn" target="_blank" rel="noopener" href="${waLink(`היי, אשמח להצעת מחיר על ${p.name} ב${GOLDS[sel.gold].name} 14K.`)}">לקבלת הצעת מחיר בוואטסאפ</a><small class="sum-note">נחזור אליך עם אפשרויות גודל ומחיר.</small></div>`;
   }
   h+=`<ul class="assure"><li>יהלום מעבדה אמיתי, עם תעודה</li><li>מיוצר במיוחד בשבילך, ומגיע תוך שבוע</li><li>תיקון אחד בלי עלות, כולל שינוי מידה</li><li>אריזת מתנה עם כרטיס ברכה למילוי</li></ul>
     <p class="custom-strip">רוצים גודל אחר, צורת אבן אחרת או שינוי בעיצוב? <a href="${waLink(`היי, אני מתעניין/ת ב${p.name} עם שינוי:`)}">כתבו לנו בוואטסאפ</a>, ונייצר במיוחד.</p>`;
+  h+=`<div class="pd-acc">
+    <details><summary>ממה התכשיט עשוי</summary><p>זהב 14 קראט, לבן או צהוב, ויהלומי מעבדה. יהלום מעבדה זהה ליהלום שנכרה מהאדמה בחומר, בקשיות ובברק. כל תכשיט מגיע עם תעודה.</p></details>
+    <details><summary>משלוח ואספקה</summary><p>התכשיט מיוצר אחרי אישור ההזמנה ומגיע עם שליח עד הבית תוך שבוע. עלות המשלוח מופיעה בהצעת המחיר.</p></details>
+    <details><summary>תיקונים והתאמת מידה</summary><p>התיקון הראשון עלינו, כולל שינוי מידה של טבעת. מתאמים בוואטסאפ.</p></details>
+  </div>`;
   document.getElementById("config").innerHTML=h;
+  const others=PRODUCTS.filter(x=>x.id!==p.id&&x.cat===p.cat).concat(PRODUCTS.filter(x=>x.cat!==p.cat&&x.cat!=="rings")).slice(0,4);
+  document.getElementById("moreCards").innerHTML=others.map((x,i)=>pcard(x,i%2?"yellow":"white")).join("");
 }
 function pick(k,v){sel[k]=v;sel.view="main";renderProduct(sel.id);}
 function orderLink(){

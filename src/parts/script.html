@@ -95,19 +95,46 @@ function pcard(p,gold="yellow"){
   const isRing=p.cat==="rings";
   const alt=isRing?`<img class="alt" src="img/${p.style}-${gold}-hand.jpg" alt="" loading="lazy">`:"";
   return `<a class="pcard rv" href="#product-${p.id}">
-    <div class="pic"><img class="main" src="${PHOTO(p,gold,"round")}" alt="${p.name}, ${GOLDS[gold].name}. התמונה להמחשה" loading="lazy">${alt}<span class="badge">14K · בהתאמה אישית</span></div>
+    <div class="pic"><img class="main" src="${PHOTO(p,gold,"round")}" alt="${p.name}, ${GOLDS[gold].name}. התמונה להמחשה" loading="lazy">${alt}</div>
     <h3>${p.name}</h3>
-    <div class="meta"><span>${CATS[p.cat].name}</span><span class="price">לבחירה ←</span></div>
+    <div class="meta"><span>${CATS[p.cat].name}</span><span class="price">לבחירה <i aria-hidden="true">←</i></span></div>
   </a>`;
 }
 const customCard=`<a class="pcard custom rv" href="#custom"><div class="pic"><div><b>לא מצאת?</b><small>נייצר במיוחד בשבילך לפי תמונה או רעיון.</small></div></div><h3>עיצוב אישי</h3><div class="meta"><span>בוואטסאפ</span><span class="price">←</span></div></a>`;
 function renderHome(){
   const t="זהב 14K ✦ יהלומי מעבדה ✦ מיוצר במיוחד בשבילך ✦ עד הבית תוך שבוע ✦ תיקון ראשון עלינו ✦ אריזת מתנה ✦ ";
   document.getElementById("ticker").innerHTML=`<span>${t.repeat(3).split("✦").join("<i>✦</i>")}</span><span>${t.repeat(3).split("✦").join("<i>✦</i>")}</span>`;
-  document.getElementById("shapes").innerHTML=Object.entries(SHAPES).map(([k,s])=>`<a class="shape rv" href="#product-solitaire" onclick="presetShape='${k}'">${s.icon.replace('width="26" height="26"','')}<b>${s.name}</b><small>${SHAPE_TXT[k]}</small></a>`).join("");
+  document.getElementById("shapes").innerHTML=Object.entries(SHAPES).map(([k,s])=>`<a class="shape" href="#product-solitaire" onclick="presetShape='${k}'"><span class="shape-pic"><img src="img/solitaire-yellow${k==="round"?"":"-"+k}.jpg" alt="טבעת סוליטר עם יהלום ${s.name}. התמונה להמחשה" loading="lazy"></span><b>${s.name}</b><small>${SHAPE_TXT[k]}</small></a>`).join("");
+  const HANDS=[["solitaire","yellow"],["halo","white"],["trilogy","yellow"],["pave","white"]];
+  document.getElementById("hands").innerHTML=HANDS.map(([id,g])=>{const p=byId(id);return `<a class="hand" href="#product-${id}"><span class="arch"><img src="img/${p.style}-${g}-hand.jpg" alt="טבעת ${p.name} ב${GOLDS[g].name} על יד. התמונה להמחשה" loading="lazy"></span><b>${p.name}</b><small>${GOLDS[g].name}</small></a>`;}).join("");
+  setupSize();
   document.getElementById("homeCards").innerHTML=["solitaire","halo","trilogy","pave"].map((id,i)=>pcard(byId(id),i%2?"white":"yellow")).join("");
   document.getElementById("faqHome").innerHTML=FAQ.map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join("");
   setupLit(); setupReveal();
+}
+/* מדריך גודל: קוטר מקורב של יהלום עגול לפי קראט */
+const CARAT_MM={1:6.5,1.5:7.4,2:8.1};
+let sizeSel=1;
+function setupSize(){
+  const tabs=document.getElementById("sizeTabs"); if(!tabs) return;
+  const PX=24, cx=210, base=236;
+  const draw=()=>{
+    const mm=CARAT_MM[sizeSel], r=mm*PX/2;
+    tabs.innerHTML=RING_CARATS.map(c=>`<button type="button" class="${c===sizeSel?"on":""}" aria-pressed="${c===sizeSel}" onclick="sizeSel=${c};setupSize()">${c} קראט</button>`).join("");
+    document.getElementById("sizeOut").textContent=`${sizeSel} קראט: קוטר של בערך ${mm} מ"מ ביהלום עגול.`;
+    let facets="";
+    for(let i=0;i<8;i++){const a=i*Math.PI/4+Math.PI/8,b=a+Math.PI/4,m=a+Math.PI/8;
+      const p=(q,k)=>`${(Math.cos(q)*k).toFixed(3)},${(Math.sin(q)*k).toFixed(3)}`;
+      facets+=`<path d="M${p(a,.52)}L${p(m,1)}L${p(b,.52)}M${p(a,.52)}L${p(a,1)}M${p(m,1)}L${p(m,.3)}"/>`;}
+    let oct=""; for(let i=0;i<8;i++){const a=i*Math.PI/4+Math.PI/8;oct+=(i?"L":"M")+(Math.cos(a)*.52).toFixed(3)+","+(Math.sin(a)*.52).toFixed(3);}
+    document.getElementById("sizeGem").innerHTML=`<g style="transform:translate(${cx}px,${base-12-r}px) scale(${r})"><circle r="1" class="g-fill"/><circle r="1"/>${facets}<path d="${oct}Z"/></g>`;
+    let rl=`<line x1="${cx-5*PX}" y1="${base}" x2="${cx+5*PX}" y2="${base}"/>`;
+    for(let i=0;i<=10;i++){const x=cx-5*PX+i*PX;rl+=`<line x1="${x}" y1="${base}" x2="${x}" y2="${base+(i%5?7:13)}"/>`;}
+    rl+=`<text x="${cx-5*PX}" y="${base+32}" text-anchor="middle">0</text><text x="${cx}" y="${base+32}" text-anchor="middle">5</text><text x="${cx+5*PX}" y="${base+32}" text-anchor="middle">10 מ"מ</text>`;
+    rl+=`<line class="mark" x1="${cx-r}" y1="${base-6}" x2="${cx-r}" y2="${base+18}"/><line class="mark" x1="${cx+r}" y1="${base-6}" x2="${cx+r}" y2="${base+18}"/>`;
+    document.getElementById("sizeRuler").innerHTML=rl;
+  };
+  draw();
 }
 const SHAPE_TXT={round:"הקלאסי. הכי הרבה ברק.",oval:"מאריך את האצבע. אלגנטי ונוצץ.",pear:"טיפה רומנטית, עם אופי."};
 let presetShape=null;
@@ -156,7 +183,7 @@ function renderProduct(id){
     : `<img class="photo${cur.k==="hand"?" cover":""}" src="${cur.src}" alt="${p.name}, ${GOLDS[sel.gold].name}, ${cur.label}. התמונה להמחשה">`;
   document.getElementById("thumbs").innerHTML = views.length>1 ? views.map(v=>`<button type="button" class="${v.k===cur.k?"on":""}" aria-pressed="${v.k===cur.k}" aria-label="${v.label}" onclick="sel.view='${v.k}';renderProduct(sel.id)"><img src="${v.src}" alt="" loading="lazy"></button>`).join("") : "";
   const goldC=Object.entries(GOLDS).map(([k,g])=>`<button type="button" class="choice ${sel.gold===k?"on":""}" aria-pressed="${sel.gold===k}" onclick="pick('gold','${k}')"><span class="dot" style="background:linear-gradient(135deg,${g.a},${g.b})"></span><b>${g.name}</b><small>14 קראט</small></button>`).join("");
-  let h=`<div class="kick">${p.cat==="rings"?"חדש · בהתאמה אישית":CATS[p.cat].name}</div><h1>${p.name}</h1><p class="desc">${p.desc}</p>
+  let h=`<div class="kick">${p.cat==="rings"?"טבעת אירוסין בהתאמה אישית":CATS[p.cat].name}</div><h1>${p.name}</h1><p class="desc">${p.desc}</p>
     <div class="step-h">צבע הזהב. <span>איזה מהם?</span></div><div class="choices two">${goldC}</div>`;
   if(p.cat==="rings"){
     h+=`<div class="step-h">צורת היהלום. <span>איזו צורה?</span></div>
@@ -167,15 +194,22 @@ function renderProduct(id){
       <label class="sr" for="ringSize">מידת הטבעת</label>
       <select id="ringSize" onchange="sel.size=this.value;document.getElementById('orderBtn').href=orderLink()"><option value="">עוד לא יודע/ת, נברר יחד</option>${RING_SIZES.map(s=>`<option ${String(sel.size)===String(s)?"selected":""}>${s}</option>`).join("")}</select>
       <button type="button" class="linkbtn" onclick="document.getElementById('sizeDlg').showModal()">איך יודעים מה המידה?</button>
-      <div class="sumbox"><div><div class="p">${p.name}</div><small>${GOLDS[sel.gold].name} 14K · יהלום ${SHAPES[sel.shape].name} ${sel.carat} קראט · מגיע תוך שבוע מאישור ההזמנה</small></div>
+      <div class="sumbox"><div><div class="p">${p.name}</div><small>${GOLDS[sel.gold].name} 14K, יהלום ${SHAPES[sel.shape].name} ${sel.carat} קראט. מגיע תוך שבוע מאישור ההזמנה</small></div>
         <a class="btn" id="orderBtn" target="_blank" rel="noopener" href="${orderLink()}">לקבלת הצעת מחיר בוואטסאפ</a><small class="sum-note">הלחיצה פותחת וואטסאפ עם הבחירה שלך. עוד לא מתחייבים לכלום.</small></div>`;
   } else {
-    h+=`<div class="sumbox"><div><div class="p">${p.name}</div><small>${GOLDS[sel.gold].name} 14K · אורך וגודל היהלומים בהתאמה אישית</small></div>
+    h+=`<div class="sumbox"><div><div class="p">${p.name}</div><small>${GOLDS[sel.gold].name} 14K, אורך וגודל היהלומים בהתאמה אישית</small></div>
       <a class="btn" target="_blank" rel="noopener" href="${waLink(`היי, אשמח להצעת מחיר על ${p.name} ב${GOLDS[sel.gold].name} 14K.`)}">לקבלת הצעת מחיר בוואטסאפ</a><small class="sum-note">נחזור אליך עם אפשרויות גודל ומחיר.</small></div>`;
   }
   h+=`<ul class="assure"><li>יהלום מעבדה אמיתי, עם תעודה</li><li>מיוצר במיוחד בשבילך, ומגיע תוך שבוע</li><li>תיקון אחד בלי עלות, כולל שינוי מידה</li><li>אריזת מתנה עם כרטיס ברכה למילוי</li></ul>
     <p class="custom-strip">רוצים גודל אחר, צורת אבן אחרת או שינוי בעיצוב? <a href="${waLink(`היי, אני מתעניין/ת ב${p.name} עם שינוי:`)}">כתבו לנו בוואטסאפ</a>, ונייצר במיוחד.</p>`;
+  h+=`<div class="pd-acc">
+    <details><summary>ממה התכשיט עשוי</summary><p>זהב 14 קראט, לבן או צהוב, ויהלומי מעבדה. יהלום מעבדה זהה ליהלום שנכרה מהאדמה בחומר, בקשיות ובברק. כל תכשיט מגיע עם תעודה.</p></details>
+    <details><summary>משלוח ואספקה</summary><p>התכשיט מיוצר אחרי אישור ההזמנה ומגיע עם שליח עד הבית תוך שבוע. עלות המשלוח מופיעה בהצעת המחיר.</p></details>
+    <details><summary>תיקונים והתאמת מידה</summary><p>התיקון הראשון עלינו, כולל שינוי מידה של טבעת. מתאמים בוואטסאפ.</p></details>
+  </div>`;
   document.getElementById("config").innerHTML=h;
+  const others=PRODUCTS.filter(x=>x.id!==p.id&&x.cat===p.cat).concat(PRODUCTS.filter(x=>x.cat!==p.cat&&x.cat!=="rings")).slice(0,4);
+  document.getElementById("moreCards").innerHTML=others.map((x,i)=>pcard(x,i%2?"yellow":"white")).join("");
 }
 function pick(k,v){sel[k]=v;sel.view="main";renderProduct(sel.id);}
 function orderLink(){
