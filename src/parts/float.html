@@ -1,0 +1,26 @@
+<a class="wa" id="waFloat" href="https://wa.me/972552420284" aria-label="שליחת הודעת וואטסאפ למספר 055-2420284">וואטסאפ</a>
+<button class="a11y-btn" type="button" id="a11yBtn" aria-expanded="false" aria-controls="a11yPanel">נגישות</button>
+<div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="תפריט נגישות">
+  <h3>תפריט נגישות</h3>
+  <button type="button" data-a11y="big" aria-pressed="false">הגדלת טקסט</button>
+  <button type="button" data-a11y="contrast" aria-pressed="false">ניגודיות גבוהה</button>
+  <button type="button" data-a11y="links" aria-pressed="false">הדגשת קישורים</button>
+  <button type="button" data-a11y="reset">איפוס</button>
+  <a href="#accessibility" style="font-size:14px;margin-top:4px">להצהרת הנגישות</a>
+</div>
+<div class="cookie" id="cookie" role="region" aria-label="הודעה על עוגיות">
+  <span>האתר משתמש בעוגיות ובאחסון בדפדפן רק לצורך תפעול, למשל שמירת העדפות הנגישות שלך. <a href="#privacy">מדיניות הפרטיות</a></span>
+  <button type="button" onclick="closeCookie()">הבנתי</button>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<dialog id="sizeDlg" aria-labelledby="sizeT">
+  <div class="dlg">
+    <h2 id="sizeT">איך יודעים מה המידה?</h2>
+    <p>המידה היא היקף פנימי של הטבעת במילימטרים. לוקחים טבעת שכבר יושבת טוב על האצבע, מודדים את הקוטר הפנימי שלה, ומשווים לטבלה.</p>
+    <table class="sizes"><thead><tr><th scope="col">מידה</th><th scope="col">קוטר פנימי (מ"מ)</th></tr></thead><tbody id="sizeRows"></tbody></table>
+    <p style="font-size:15px">לא בטוחים? בחרו את המידה הקרובה. התיקון הראשון, כולל שינוי מידה, הוא בלי עלות.</p>
+    <button class="pill" type="button" onclick="document.getElementById('sizeDlg').close()">הבנתי</button>
+  </div>
+</dialog>
+
